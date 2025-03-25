@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Poppins } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Pokedex Next.js",
   description: "Pokedex Next.js",
 };
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export default function RootLayout({
   children,
@@ -13,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body className={poppins.className}>{children}</body>
     </html>
   );
 }
