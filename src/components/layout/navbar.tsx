@@ -8,10 +8,11 @@ import { IconProfile } from "@/assets/icons/svg/icon-profile";
 import { IconProfileFill } from "@/assets/icons/svg/icon-profile-fill";
 import { IconRegion } from "@/assets/icons/svg/icon-region";
 import { IconRegionFill } from "@/assets/icons/svg/icon-region-fill";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 
-export function NavBar() {
+export function NavBar({ className }: { className?: string }) {
   type MenuListProps = {
     name: string;
     icon: React.ReactNode;
@@ -49,12 +50,17 @@ export function NavBar() {
   const [activeMenu, setActiveMenu] = useState<string>(MenuList[0].href);
 
   return (
-    <nav className={`border grid grid-cols-${MenuList.length} gap-10`}>
+    <nav
+      className={cn(
+        `grid grid-cols-${MenuList.length} bg-white border w-dvw lg:max-w-[calc(100dvw-50%)] sm:max-w-[calc(100dvw-30%)] mx-auto gap-10 overflow-hidden`,
+        className
+      )}
+    >
       {MenuList.map((menu, index) => (
         <Link
           key={index}
           href={menu.href}
-          className="flex flex-col items-center justify-center h-[72px]"
+          className="flex flex-col items-center justify-center h-[72px] hover:scale-110 transition-all"
           onClick={() => setActiveMenu(menu.href)}
         >
           {activeMenu === menu.href ? menu.icon : menu.iconFill}
