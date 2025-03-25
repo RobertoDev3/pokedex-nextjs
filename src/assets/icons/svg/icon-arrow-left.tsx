@@ -13,23 +13,23 @@ export function IconArrowLeft({ className, ...props }: Props) {
       <path
         d="M10.6666 15.9999H24"
         stroke="#333333"
-        stroke-width="2.26667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.26667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M16 9.33325L9.33334 15.9999"
         stroke="#333333"
-        stroke-width="2.26667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.26667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M16 22.6667L9.33331 16"
         stroke="#333333"
-        stroke-width="2.26667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.26667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -22,21 +22,21 @@ export function IconPokedex({ className, ...props }: Props) {
       <path
         d="M13 23.8332C18.9832 23.8332 23.8333 18.9831 23.8333 12.9998C23.8333 7.01659 18.9832 2.1665 13 2.1665C7.01674 2.1665 2.16666 7.01659 2.16666 12.9998C2.16666 18.9831 7.01674 23.8332 13 23.8332Z"
         stroke="#173EA5"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M12.9999 16.25C13.8619 16.25 14.6885 15.9076 15.298 15.2981C15.9075 14.6886 16.2499 13.862 16.2499 13C16.2499 12.138 15.9075 11.3114 15.298 10.7019C14.6885 10.0924 13.8619 9.75 12.9999 9.75C12.138 9.75 11.3113 10.0924 10.7018 10.7019C10.0923 11.3114 9.74991 12.138 9.74991 13C9.74991 13.862 10.0923 14.6886 10.7018 15.2981C11.3113 15.9076 12.138 16.25 12.9999 16.25V16.25Z"
         stroke="#173EA5"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M2.16666 12.9998H9.74999M16.25 12.9998H23.8333"
         stroke="#173EA5"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
     </svg>
   );
