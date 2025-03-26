@@ -52,7 +52,7 @@ export function NavBar({ className }: { className?: string }) {
   return (
     <nav
       className={cn(
-        `grid grid-cols-${MenuList.length} bg-white border w-dvw lg:max-w-[calc(100dvw-50%)] sm:max-w-[calc(100dvw-30%)] mx-auto gap-10 overflow-hidden`,
+        `grid grid-cols-${MenuList.length} grid-cols-4 px-8 bg-white w-dvw lg:max-w-[calc(100dvw-50%)] sm:max-w-[calc(100dvw-30%)] mx-auto gap-10 overflow-hidden`,
         className
       )}
     >
