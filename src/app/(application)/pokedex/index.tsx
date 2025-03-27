@@ -26,6 +26,7 @@ export default function PokedexPageContent() {
         ))}
       </div>
     );
+
   if (error) {
     console.log(error);
     return (
