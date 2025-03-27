@@ -115,8 +115,8 @@ const typeList = [
 
 export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
   return (
-    <div className="flex justify-between w-[328px] bg-[#EDF6EC] rounded-xl h-[102px] overflow-hidden">
-      <div className="flex gap-1 flex-col justify-center px-4">
+    <div className="flex justify-between gap-0 min-w-[328px] bg-[#EDF6EC] rounded-xl h-[102px] overflow-hidden">
+      <div className="flex gap-1 flex-col justify-center pl-4 pr-2">
         <div>
           <p className="text-[#333333] font-semibold text-xs">
             Nº{maskThreeDigits(pokemon.id)}
@@ -159,7 +159,12 @@ export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
           })}
         </div>
       </div>
-      <div className="relative flex rounded-l-xl items-center justify-center bg-green-400 w-[105px]">
+      <div
+        className="relative flex rounded-l-xl items-center justify-center w-[105px]"
+        style={{
+          backgroundColor: `var(--${pokemon.types[0].type.name}-color)`,
+        }}
+      >
         <Image
           src={pokemon.sprites.front_default || "/"}
           width={126}
