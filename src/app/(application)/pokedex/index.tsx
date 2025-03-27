@@ -40,9 +40,9 @@ export default function PokedexPageContent() {
   }
 
   return (
-    <main className='space-y-10 p-4'>
-      <div>
-        <Input className='focus-visible:border-border border-border h-12 rounded-full px-8 capitalize shadow-none focus-visible:ring-0' />
+    <main className='space-y-10'>
+      <div className='border-border border-b px-4 py-5'>
+        <Input placeholder='Procurar Pokemon...' search />
       </div>
       <div className='grid grid-cols-1 gap-4 justify-self-center'>
         {pokemonList &&
