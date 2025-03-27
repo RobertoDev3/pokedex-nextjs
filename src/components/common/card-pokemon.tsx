@@ -23,74 +23,92 @@ import { JSX } from "react";
 const typeList = [
   {
     label: "water",
+    name: "Água",
     IconComponent: IconWater,
   },
   {
     label: "fire",
+    name: "Fogo",
     IconComponent: IconFire,
   },
   {
     label: "grass",
+    name: "Grama",
     IconComponent: IconGrass,
   },
   {
     label: "electric",
+    name: "Elétrico",
     IconComponent: IconElectric,
   },
   {
     label: "ice",
+    name: "Gelo",
     IconComponent: IconIce,
   },
   {
     label: "fighting",
+    name: "Lutador",
     IconComponent: IconFighting,
   },
   {
     label: "poison",
+    name: "Venenoso",
     IconComponent: IconPoison,
   },
   {
     label: "ground",
+    name: "Terrestre",
     IconComponent: IconGround,
   },
   {
     label: "flying",
+    name: "Voador",
     IconComponent: IconFlying,
   },
   {
     label: "psychic",
+    name: "Psíquico",
     IconComponent: IconPsychic,
   },
   {
     label: "bug",
+    name: "Inseto",
     IconComponent: IconBug,
   },
   {
     label: "rock",
+    name: "Pedra",
     IconComponent: IconRock,
   },
   {
     label: "ghost",
+    name: "Fantasma",
     IconComponent: IconGhost,
   },
   {
     label: "dragon",
+    name: "Dragão",
     IconComponent: IconDragon,
   },
   {
     label: "dark",
+    name: "Noturno",
     IconComponent: IconDark,
   },
   {
     label: "steel",
+    name: "Metal",
     IconComponent: IconSteel,
   },
   {
     label: "fairy",
+    name: "Fada",
     IconComponent: IconFairy,
   },
   {
     label: "normal",
+    name: "Normal",
     IconComponent: IconWater,
   },
 ];
@@ -112,21 +130,32 @@ export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
             const typeItem = typeList.find(
               (item) => item.label === type.type.name
             );
-            return typeItem ? (
-              <div
-                key={`${pokemon.name}_${type.type.name}`}
-                className={`flex items-center justify-center h-6.5 w-fit gap-1.5 ${
-                  type.type.name
-                    ? `bg-[var(--${type.type.name}-color)]`
-                    : "bg-gray-200"
-                } rounded-full px-2 py-1`}
-              >
-                <div className="bg-white rounded-full p-1">
-                  <typeItem.IconComponent className="size-[12px]" />
+            return (
+              typeItem && (
+                <div
+                  key={`${pokemon.name}_${type.type.name}`}
+                  style={{ backgroundColor: `var(--${type.type.name}-color)` }}
+                  className="flex items-center justify-center h-6.5 w-fit gap-1.5  rounded-full pl-2 pr-3"
+                >
+                  <div className="bg-white rounded-full p-1">
+                    <typeItem.IconComponent className="size-[12px]" />
+                  </div>
+                  <p
+                    className="text-[11px] font-medium"
+                    style={{
+                      color: `${
+                        typeItem.label === "dragon" ||
+                        typeItem.label === "ghost" ||
+                        typeItem.label === "fighting" ||
+                        (typeItem.label === "dark" && "white")
+                      }`,
+                    }}
+                  >
+                    {typeItem.name}
+                  </p>
                 </div>
-                <p className="text-[11px] font-medium">{type.type.name}</p>
-              </div>
-            ) : null;
+              )
+            );
           })}
         </div>
       </div>
