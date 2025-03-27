@@ -159,7 +159,7 @@ export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
           })}
         </div>
       </div>
-      <div className="relative flex rounded-l-xl items-center justify-center bg-green-400 w-[126px]">
+      <div className="relative flex rounded-l-xl items-center justify-center bg-green-400 w-[105px]">
         <Image
           src={pokemon.sprites.front_default || "/"}
           width={126}
