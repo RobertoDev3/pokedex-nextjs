@@ -1,8 +1,8 @@
 "use client";
 
-import Loading from "@/app/loading";
 import { ImageSnorlax } from "@/assets/images/svg/image-snorlax";
 import { CardPokemon } from "@/components/common/card-pokemon";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAllPokemons } from "@/hooks/use-pokemon";
 
 export default function PokedexPageContent() {
@@ -10,8 +10,20 @@ export default function PokedexPageContent() {
 
   if (isLoading)
     return (
-      <div className="h-full">
-        <Loading className="bg-background" />
+      <div className="h-full space-y-10 p-4">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <Skeleton
+            key={index}
+            className="flex justify-between bg-transparent min-w-[328px] h-[102px] border rounded-xl mb-4"
+          >
+            <div className="flex gap-1 flex-col justify-center pl-4 pr-2">
+              <Skeleton className="h-[16px] w-[35px]" />
+              <Skeleton className="h-[25px] w-[120px]" />
+              <Skeleton className="h-[25px] w-[80px]" />
+            </div>
+            <Skeleton className="flex rounded-l-xl items-center justify-center w-[105px]" />
+          </Skeleton>
+        ))}
       </div>
     );
   if (error) {

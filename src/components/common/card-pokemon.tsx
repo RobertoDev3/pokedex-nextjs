@@ -115,7 +115,7 @@ const typeList = [
 
 export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
   return (
-    <div className="flex justify-between gap-0 min-w-[328px] bg-[#EDF6EC] rounded-xl h-[102px] overflow-hidden">
+    <div className="flex justify-between min-w-[328px] bg-[#EDF6EC] rounded-xl h-[102px] overflow-hidden">
       <div className="flex gap-1 flex-col justify-center pl-4 pr-2">
         <div>
           <p className="text-[#333333] font-semibold text-xs">
@@ -135,7 +135,7 @@ export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
                 <div
                   key={`${pokemon.name}_${type.type.name}`}
                   style={{ backgroundColor: `var(--${type.type.name}-color)` }}
-                  className="flex items-center justify-center h-6.5 w-fit gap-1.5  rounded-full pl-2 pr-3"
+                  className="flex items-center justify-center h-6.5 w-fit gap-1.5 rounded-full pl-2 pr-3"
                 >
                   <div className="bg-white rounded-full p-1">
                     <typeItem.IconComponent className="size-[12px]" />
