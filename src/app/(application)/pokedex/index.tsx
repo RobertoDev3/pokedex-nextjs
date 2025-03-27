@@ -11,7 +11,7 @@ export default function PokedexPageContent() {
   if (isLoading)
     return (
       <div className="h-full">
-        <Loading />
+        <Loading className="bg-background" />
       </div>
     );
   if (error) {

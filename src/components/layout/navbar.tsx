@@ -10,44 +10,50 @@ import { IconRegion } from "@/assets/icons/svg/icon-region";
 import { IconRegionFill } from "@/assets/icons/svg/icon-region-fill";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
+type MenuListProps = {
+  name: string;
+  icon: React.ReactNode;
+  iconFill: React.ReactNode;
+  href: string;
+};
+
+const MenuList: MenuListProps[] = [
+  {
+    name: "Pokedex",
+    icon: <IconPokedex />,
+    iconFill: <IconPokedexFill />,
+    href: "/pokedex",
+  },
+  {
+    name: "Regiões",
+    icon: <IconRegion />,
+    iconFill: <IconRegionFill />,
+    href: "/regions",
+  },
+  {
+    name: "Favoritos",
+    icon: <IconFavorite />,
+    iconFill: <IconFavoriteFill />,
+    href: "/favorites",
+  },
+  {
+    name: "Conta",
+    icon: <IconProfile />,
+    iconFill: <IconProfileFill />,
+    href: "/profile",
+  },
+];
 
 export function NavBar({ className }: { className?: string }) {
-  type MenuListProps = {
-    name: string;
-    icon: React.ReactNode;
-    iconFill: React.ReactNode;
-    href: string;
-  };
+  const pathname = usePathname();
+  const [activeMenu, setActiveMenu] = useState(pathname);
 
-  const MenuList: MenuListProps[] = [
-    {
-      name: "Pokedex",
-      icon: <IconPokedex />,
-      iconFill: <IconPokedexFill />,
-      href: "/pokedex",
-    },
-    {
-      name: "Regiões",
-      icon: <IconRegion />,
-      iconFill: <IconRegionFill />,
-      href: "/regions",
-    },
-    {
-      name: "Favoritos",
-      icon: <IconFavorite />,
-      iconFill: <IconFavoriteFill />,
-      href: "/favorites",
-    },
-    {
-      name: "Conta",
-      icon: <IconProfile />,
-      iconFill: <IconProfileFill />,
-      href: "/profile",
-    },
-  ];
-
-  const [activeMenu, setActiveMenu] = useState<string>(MenuList[0].href);
+  useEffect(() => {
+    setActiveMenu(pathname);
+  }, [pathname]);
 
   return (
     <nav
