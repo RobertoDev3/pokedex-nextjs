@@ -2,6 +2,7 @@
 
 import { ImageSnorlax } from "@/assets/images/svg/image-snorlax";
 import { CardPokemon } from "@/components/common/card-pokemon";
+import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAllPokemons } from "@/hooks/use-pokemon";
 
@@ -40,7 +41,9 @@ export default function PokedexPageContent() {
 
   return (
     <main className="space-y-10 p-4">
-      <h1>Pokedex</h1>
+      <div>
+        <Input className=" focus-visible:ring-0 rounded-full  focus-visible:border-border h-12 px-8 capitalize shadow-none border-border" />
+      </div>
       <div className="grid grid-cols-1 justify-self-center gap-4">
         {pokemonList &&
           pokemonList.map((pokemon) => (
