@@ -1,4 +1,4 @@
-import HomePageContent from ".";
+import HomePageContent from '.';
 
 export default function HomePage() {
   return <HomePageContent />;

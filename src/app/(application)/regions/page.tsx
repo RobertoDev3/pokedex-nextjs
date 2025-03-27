@@ -1,4 +1,4 @@
-import RegionsPageContent from ".";
+import RegionsPageContent from '.';
 
 export default function RegionsPage() {
   return <RegionsPageContent />;

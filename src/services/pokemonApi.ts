@@ -1,12 +1,12 @@
-import { EvolutionChain, EvolutionNode, Pokemon } from "@/types/pokemon-props";
-import axios from "axios";
+import { EvolutionChain, EvolutionNode, Pokemon } from '@/types/pokemon-props';
+import axios from 'axios';
 
 export const fetchAllPokemons = async (
   limit: number = 151,
-  offset: number = 0
+  offset: number = 0,
 ): Promise<Pokemon[]> => {
   const response = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
   );
   const pokemonsList = response.data.results;
 
@@ -14,32 +14,31 @@ export const fetchAllPokemons = async (
     pokemonsList.map(async (pokemon: { name: string; url: string }) => {
       const res = await axios.get<Pokemon>(pokemon.url);
       return res.data;
-    })
+    }),
   );
 
   return detailedPokemons;
 };
 
 export const fetchPokemonDetails = async (
-  pokemonIdentifier: string | number
+  pokemonIdentifier: string | number,
 ): Promise<Pokemon> => {
   const response = await axios.get<Pokemon>(
-    `https://pokeapi.co/api/v2/pokemon/${pokemonIdentifier}`
+    `https://pokeapi.co/api/v2/pokemon/${pokemonIdentifier}`,
   );
   return response.data;
 };
 
 export const fetchPokemonEvolutions = async (
-  pokemonIdentifier: string | number
+  pokemonIdentifier: string | number,
 ): Promise<EvolutionChain> => {
   const speciesResponse = await axios.get<{ evolution_chain: { url: string } }>(
-    `https://pokeapi.co/api/v2/pokemon-species/${pokemonIdentifier}`
+    `https://pokeapi.co/api/v2/pokemon-species/${pokemonIdentifier}`,
   );
   const evolutionChainUrl = speciesResponse.data.evolution_chain.url;
 
-  const evolutionChainResponse = await axios.get<EvolutionChain>(
-    evolutionChainUrl
-  );
+  const evolutionChainResponse =
+    await axios.get<EvolutionChain>(evolutionChainUrl);
   return evolutionChainResponse.data;
 };
 

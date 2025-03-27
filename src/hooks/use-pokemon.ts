@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
 import {
   fetchAllPokemons,
   fetchPokemonDetails,
   fetchPokemonEvolutions,
   parseEvolutionChain,
-} from "@/services/pokemonApi";
+} from '@/services/pokemonApi';
 
 export const useAllPokemons = (limit: number = 151, offset: number = 0) => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["allPokemons", limit, offset],
+    queryKey: ['allPokemons', limit, offset],
     queryFn: () => fetchAllPokemons(limit, offset),
     retry: 2,
     staleTime: 1000 * 60 * 5, // 5 minutos
@@ -23,7 +23,7 @@ export const useAllPokemons = (limit: number = 151, offset: number = 0) => {
 
 export const usePokemon = (pokemonIdentifier: string | number) => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["pokemon", pokemonIdentifier],
+    queryKey: ['pokemon', pokemonIdentifier],
     retry: 2,
     staleTime: 1000 * 60 * 5, // 5 minutos
     queryFn: async () => {
