@@ -112,7 +112,6 @@ export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
             const typeItem = typeList.find(
               (item) => item.label === type.type.name
             );
-            console.log(type.type.name);
             return typeItem ? (
               <div
                 key={`${pokemon.name}_${type.type.name}`}
@@ -148,7 +147,18 @@ export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
             </linearGradient>
           </defs>
         </svg>
-        <IconGrass className="absolute size-full py-2" color="url(#gradient)" />
+        {(() => {
+          const firstType = pokemon.types[0]?.type.name;
+          const typeItem = typeList.find((item) => item.label === firstType);
+          return (
+            typeItem && (
+              <typeItem.IconComponent
+                className="absolute size-full p-2"
+                color="url(#gradient)"
+              />
+            )
+          );
+        })()}
       </div>
     </div>
   );
