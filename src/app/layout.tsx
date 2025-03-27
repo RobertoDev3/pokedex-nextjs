@@ -1,3 +1,4 @@
+import Providers from "@/context/providers";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${poppins.className} overflow-hidden`}>{children}</body>
+      <body className={`${poppins.className} overflow-hidden`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

@@ -24,7 +24,8 @@ export function CardPokemon() {
           </div>
         </div>
       </div>
-      <div className="flex rounded-l-xl items-center justify-center bg-green-400 w-[126px]">
+      <div className="relative flex rounded-l-xl items-center justify-center bg-green-400 w-[126px]">
+        <p className="z-10">pokemon</p>
         <svg width="0" height="0" style={{ position: "absolute" }}>
           <defs>
             <linearGradient id="gradient" x1="0" y1="0" x2="0.5" y2="1.5">
@@ -33,7 +34,7 @@ export function CardPokemon() {
             </linearGradient>
           </defs>
         </svg>
-        <IconGrass className="size-full py-2" color="url(#gradient)" />
+        <IconGrass className="absolute size-full py-2" color="url(#gradient)" />
       </div>
     </div>
   );
