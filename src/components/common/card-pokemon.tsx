@@ -112,10 +112,15 @@ export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
             const typeItem = typeList.find(
               (item) => item.label === type.type.name
             );
+            console.log(type.type.name);
             return typeItem ? (
               <div
                 key={`${pokemon.name}_${type.type.name}`}
-                className="flex items-center justify-center h-6.5 w-fit gap-1.5 bg-green-400 rounded-full px-2 py-1"
+                className={`flex items-center justify-center h-6.5 w-fit gap-1.5 ${
+                  type.type.name
+                    ? `bg-[var(--${type.type.name}-color)]`
+                    : "bg-gray-200"
+                } rounded-full px-2 py-1`}
               >
                 <div className="bg-white rounded-full p-1">
                   <typeItem.IconComponent className="size-[12px]" />
