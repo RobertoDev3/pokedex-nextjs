@@ -13,21 +13,33 @@ export default function PokedexPageContent() {
 
   if (isLoading)
     return (
-      <div className='h-full space-y-10 p-4'>
-        {Array.from({ length: 6 }).map((_, index) => (
-          <Skeleton
-            key={index}
-            className='mb-4 flex h-[102px] min-w-[328px] justify-between rounded-xl border bg-transparent'
-          >
-            <div className='flex flex-col justify-center gap-1 pr-2 pl-4'>
-              <Skeleton className='h-[16px] w-[35px]' />
-              <Skeleton className='h-[25px] w-[120px]' />
-              <Skeleton className='h-[25px] w-[80px]' />
-            </div>
-            <Skeleton className='flex w-[105px] items-center justify-center rounded-l-xl' />
+      <>
+        <section className='flex flex-col sm:flex-row'>
+          <Skeleton className='border-border w-full border-b bg-transparent px-4 py-5 sm:max-w-md sm:border-none'>
+            <Skeleton className='h-12 rounded-full' />
           </Skeleton>
-        ))}
-      </div>
+
+          <div className='flex w-full items-center gap-4 p-4'>
+            <Skeleton className='h-10.5 w-full rounded-full' />
+            <Skeleton className='h-10.5 w-full rounded-full' />
+          </div>
+        </section>
+        <div className='h-full px-4'>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <Skeleton
+              key={index}
+              className='mb-4 flex h-[102px] min-w-[328px] justify-between rounded-xl border bg-transparent'
+            >
+              <div className='flex flex-col justify-center gap-1 pr-2 pl-4'>
+                <Skeleton className='h-[16px] w-[35px]' />
+                <Skeleton className='h-[25px] w-[120px]' />
+                <Skeleton className='h-[25px] w-[80px]' />
+              </div>
+              <Skeleton className='flex w-[105px] items-center justify-center rounded-l-xl' />
+            </Skeleton>
+          ))}
+        </div>
+      </>
     );
 
   if (error) {

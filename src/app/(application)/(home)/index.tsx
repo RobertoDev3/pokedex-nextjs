@@ -16,7 +16,7 @@ import { IconRock } from '@/assets/elements/svg/icon-rock';
 import { IconSteel } from '@/assets/elements/svg/icon-steel';
 import { IconWater } from '@/assets/elements/svg/icon-water';
 
-export default function HomePageContent() {
+export default async function HomePageContent() {
   const Elements = [
     {
       label: 'water',
@@ -87,6 +87,8 @@ export default function HomePageContent() {
       IconComponent: IconFairy,
     },
   ];
+
+  await new Promise(resolve => setTimeout(resolve, 10000));
 
   return (
     <main className='grid grid-cols-3 gap-6 p-10'>
