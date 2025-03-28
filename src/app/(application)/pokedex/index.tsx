@@ -13,19 +13,19 @@ export default function PokedexPageContent() {
 
   if (isLoading)
     return (
-      <>
-        <section className='flex flex-col sm:flex-row'>
+      <section className='h-full overflow-hidden'>
+        <div className='flex flex-col sm:flex-row'>
           <Skeleton className='border-border w-full border-b bg-transparent px-4 py-5 sm:max-w-md sm:border-none'>
             <Skeleton className='h-12 rounded-full' />
           </Skeleton>
 
-          <div className='flex w-full items-center gap-4 p-4'>
+          <div className='flex w-full items-center gap-4 p-4 sm:max-w-[383px]'>
             <Skeleton className='h-10.5 w-full rounded-full' />
             <Skeleton className='h-10.5 w-full rounded-full' />
           </div>
-        </section>
+        </div>
         <div className='h-full px-4'>
-          {Array.from({ length: 6 }).map((_, index) => (
+          {Array.from({ length: 10 }).map((_, index) => (
             <Skeleton
               key={index}
               className='mb-4 flex h-[102px] min-w-[328px] justify-between rounded-xl border bg-transparent'
@@ -39,7 +39,7 @@ export default function PokedexPageContent() {
             </Skeleton>
           ))}
         </div>
-      </>
+      </section>
     );
 
   if (error) {
@@ -89,10 +89,12 @@ export default function PokedexPageContent() {
         </div>
       </section>
 
-      <section className='grid grid-cols-1 gap-4 px-4'>
+      <section className='grid grid-cols-1 gap-4 px-4 sm:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]'>
         {pokemonList &&
           pokemonList.map(pokemon => (
-            <CardPokemon key={pokemon.id} pokemon={pokemon} />
+            <div key={pokemon.id} className='max-w-[350px]'>
+              <CardPokemon pokemon={pokemon} />
+            </div>
           ))}
       </section>
     </main>
