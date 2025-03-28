@@ -5,7 +5,7 @@ export default function Loading({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'flex min-h-dvh items-center justify-center bg-[#000029]',
+        'flex h-dvh items-center justify-center bg-[#000029]',
         className,
       )}
     >

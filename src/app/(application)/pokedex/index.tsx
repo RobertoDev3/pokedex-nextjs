@@ -92,7 +92,7 @@ export default function PokedexPageContent() {
       <section className='grid grid-cols-1 gap-4 px-4 sm:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]'>
         {pokemonList &&
           pokemonList.map(pokemon => (
-            <div key={pokemon.id} className='max-w-[350px]'>
+            <div key={pokemon.id} className='mx-auto max-w-[350px]'>
               <CardPokemon pokemon={pokemon} />
             </div>
           ))}

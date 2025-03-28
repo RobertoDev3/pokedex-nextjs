@@ -1,5 +1,10 @@
 'use client';
 
+import { useNavStore } from '@/stores/navbarStore';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { IconFavorite } from '@/assets/icons/svg/icon-favorite';
 import { IconFavoriteFill } from '@/assets/icons/svg/icon-favorite-fill';
 import { IconPokedex } from '@/assets/icons/svg/icon-pokedex';
@@ -8,10 +13,6 @@ import { IconProfile } from '@/assets/icons/svg/icon-profile';
 import { IconProfileFill } from '@/assets/icons/svg/icon-profile-fill';
 import { IconRegion } from '@/assets/icons/svg/icon-region';
 import { IconRegionFill } from '@/assets/icons/svg/icon-region-fill';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 type MenuListProps = {
   name: string;
@@ -50,10 +51,12 @@ const MenuList: MenuListProps[] = [
 export function NavBar({ className }: { className?: string }) {
   const pathname = usePathname();
   const [activeMenu, setActiveMenu] = useState(pathname);
+  const setIsNavBarLoading = useNavStore(state => state.setIsNavBarLoading);
 
   useEffect(() => {
     setActiveMenu(pathname);
-  }, [pathname]);
+    setIsNavBarLoading(false);
+  }, [pathname, setIsNavBarLoading]);
 
   return (
     <nav
@@ -66,8 +69,14 @@ export function NavBar({ className }: { className?: string }) {
         <Link
           key={index}
           href={menu.href}
-          className='flex h-[72px] flex-col items-center justify-center transition-all hover:scale-110'
-          onClick={() => setActiveMenu(menu.href)}
+          onClick={() => {
+            setIsNavBarLoading(true);
+            setActiveMenu(menu.href);
+          }}
+          className={cn(
+            'flex h-[72px] flex-col items-center justify-center transition-all hover:scale-110',
+            activeMenu === menu.href && 'pointer-events-none',
+          )}
         >
           {activeMenu === menu.href ? menu.icon : menu.iconFill}
           {activeMenu === menu.href && (
