@@ -51,14 +51,193 @@ export type PokemonMove = {
 };
 
 export type PokemonSprites = {
+  back_default: string | null;
+  back_female: string | null;
+  back_shiny: string | null;
+  back_shiny_female: string | null;
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+  other: OtherSprites;
+  versions: VersionsSprites;
+};
+
+export type DreamWorldSprites = {
+  front_default: string | null;
+  front_female: string | null;
+};
+
+export type HomeSprites = {
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+};
+
+export type OfficialArtworkSprites = {
   front_default: string | null;
   front_shiny: string | null;
-  front_female?: string | null;
-  front_shiny_female?: string | null;
-  back_default?: string | null;
-  back_shiny?: string | null;
-  back_female?: string | null;
-  back_shiny_female?: string | null;
+};
+
+export type ShowdownSprites = {
+  back_default: string | null;
+  back_female: string | null;
+  back_shiny: string | null;
+  back_shiny_female: string | null;
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+};
+
+export type OtherSprites = {
+  dream_world: DreamWorldSprites;
+  home: HomeSprites;
+  'official-artwork': OfficialArtworkSprites;
+  showdown: ShowdownSprites;
+};
+
+// Generation I
+export type GenerationISprite = {
+  back_default: string | null;
+  back_gray: string | null;
+  back_transparent: string | null;
+  front_default: string | null;
+  front_gray: string | null;
+  front_transparent: string | null;
+};
+
+// Generation II
+export type GenerationIISpritesCrystal = {
+  back_default: string | null;
+  back_shiny: string | null;
+  back_shiny_transparent: string | null;
+  back_transparent: string | null;
+  front_default: string | null;
+  front_shiny: string | null;
+  front_shiny_transparent: string | null;
+  front_transparent: string | null;
+};
+
+export type GenerationIISpritesGoldSilver = {
+  back_default: string | null;
+  back_shiny: string | null;
+  front_default: string | null;
+  front_shiny: string | null;
+  front_transparent: string | null;
+};
+
+// Generation III
+export type GenerationIIIEmeraldSprites = {
+  front_default: string | null;
+  front_shiny: string | null;
+};
+
+export type GenerationIIIRubySapphireSprites = {
+  back_default: string | null;
+  back_shiny: string | null;
+  front_default: string | null;
+  front_shiny: string | null;
+};
+
+// Generation IV
+export type GenerationIVSprites = {
+  back_default: string | null;
+  back_female: string | null;
+  back_shiny: string | null;
+  back_shiny_female: string | null;
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+};
+
+// Generation V - Black/White
+export type AnimatedSprites = {
+  back_default: string | null;
+  back_female: string | null;
+  back_shiny: string | null;
+  back_shiny_female: string | null;
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+};
+
+export type GenerationVBlackWhiteSprites = {
+  animated: AnimatedSprites;
+  back_default: string | null;
+  back_female: string | null;
+  back_shiny: string | null;
+  back_shiny_female: string | null;
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+};
+
+// Generation VI
+export type GenerationVISprites = {
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+};
+
+// Generation VII
+export type GenerationVIIIcons = {
+  front_default: string | null;
+  front_female: string | null;
+};
+
+export type GenerationVIISprites = {
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+};
+
+// Generation VIII (apenas icons)
+export type GenerationVIIIIcons = {
+  front_default: string | null;
+  front_female: string | null;
+};
+
+export type VersionsSprites = {
+  'generation-i'?: {
+    'red-blue'?: GenerationISprite;
+    yellow?: GenerationISprite;
+  };
+  'generation-ii'?: {
+    crystal?: GenerationIISpritesCrystal;
+    gold?: GenerationIISpritesGoldSilver;
+    silver?: GenerationIISpritesGoldSilver;
+  };
+  'generation-iii'?: {
+    emerald?: GenerationIIIEmeraldSprites;
+    'firered-leafgreen'?: GenerationIIIRubySapphireSprites;
+    'ruby-sapphire'?: GenerationIIIRubySapphireSprites;
+  };
+  'generation-iv'?: {
+    'diamond-pearl'?: GenerationIVSprites;
+    'heartgold-soulsilver'?: GenerationIVSprites;
+    platinum?: GenerationIVSprites;
+  };
+  'generation-v'?: {
+    'black-white'?: GenerationVBlackWhiteSprites;
+  };
+  'generation-vi'?: {
+    'omegaruby-alphasapphire'?: GenerationVISprites;
+    'x-y'?: GenerationVISprites;
+  };
+  'generation-vii'?: {
+    icons?: GenerationVIIIcons;
+    'ultra-sun-ultra-moon'?: GenerationVIISprites;
+  };
+  'generation-viii'?: {
+    icons?: GenerationVIIIIcons;
+  };
 };
 
 export type PokemonStat = {

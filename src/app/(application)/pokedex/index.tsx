@@ -7,6 +7,7 @@ import { Select } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAllPokemons } from '@/hooks/use-pokemon';
 import { pokemonTypeList } from '@/mockups/mockups';
+import Link from 'next/link';
 
 export default function PokedexPageContent() {
   const { pokemonList, isLoading, error } = useAllPokemons(151, 0);
@@ -54,8 +55,8 @@ export default function PokedexPageContent() {
   }
 
   return (
-    <main>
-      <section className='flex flex-col sm:flex-row'>
+    <section>
+      <article className='flex flex-col sm:flex-row'>
         <div className='border-border w-full border-b px-4 py-5 sm:max-w-md sm:border-none'>
           <Input placeholder='Procurar Pokemon...' search />
         </div>
@@ -87,16 +88,18 @@ export default function PokedexPageContent() {
             </Select.Content>
           </Select.Root>
         </div>
-      </section>
+      </article>
 
-      <section className='grid grid-cols-1 gap-4 px-4 sm:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]'>
+      <article className='grid grid-cols-1 gap-4 px-4 sm:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]'>
         {pokemonList &&
           pokemonList.map(pokemon => (
             <div key={pokemon.id} className='mx-auto max-w-[350px]'>
-              <CardPokemon pokemon={pokemon} />
+              <Link href={`/pokedex/${pokemon.name}`}>
+                <CardPokemon pokemon={pokemon} />
+              </Link>
             </div>
           ))}
-      </section>
-    </main>
+      </article>
+    </section>
   );
 }
