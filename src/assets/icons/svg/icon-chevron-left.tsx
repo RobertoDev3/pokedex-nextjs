@@ -12,7 +12,7 @@ export function IconChevronLeft({ className, ...props }: Props) {
     >
       <path
         d='M22.1667 12.6667L15.8333 19.0001L22.1667 25.3334'
-        stroke='white'
+        stroke='currentColor'
         strokeWidth='2.5'
         strokeLinecap='round'
         strokeLinejoin='round'

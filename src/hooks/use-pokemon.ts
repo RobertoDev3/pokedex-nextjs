@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import {
   fetchAllPokemons,
   fetchPokemonDetails,
-  fetchPokemonEvolutions,
+  fetchPokemonSpecies,
   parseEvolutionChain,
 } from '@/services/pokemonApi';
 
@@ -27,12 +27,14 @@ export const usePokemon = (pokemonIdentifier: string | number) => {
     retry: 2,
     staleTime: 1000 * 60 * 5, // 5 minutos
     queryFn: async () => {
-      const [details, evolutionsData] = await Promise.all([
+      const [details, speciesData] = await Promise.all([
         fetchPokemonDetails(pokemonIdentifier),
-        fetchPokemonEvolutions(pokemonIdentifier),
+        fetchPokemonSpecies(pokemonIdentifier),
       ]);
-      const evolutions = parseEvolutionChain(evolutionsData.chain);
-      return { details, evolutions };
+
+      const evolutions = parseEvolutionChain(speciesData.evolutionChain.chain);
+
+      return { details, evolutions, description: speciesData.description };
     },
   });
 

@@ -29,17 +29,29 @@ export const fetchPokemonDetails = async (
   return response.data;
 };
 
-export const fetchPokemonEvolutions = async (
+export const fetchPokemonSpecies = async (
   pokemonIdentifier: string | number,
-): Promise<EvolutionChain> => {
-  const speciesResponse = await axios.get<{ evolution_chain: { url: string } }>(
+): Promise<{ evolutionChain: EvolutionChain; description: string }> => {
+  const speciesResponse = await axios.get(
     `https://pokeapi.co/api/v2/pokemon-species/${pokemonIdentifier}`,
   );
-  const evolutionChainUrl = speciesResponse.data.evolution_chain.url;
 
-  const evolutionChainResponse =
-    await axios.get<EvolutionChain>(evolutionChainUrl);
-  return evolutionChainResponse.data;
+  const { evolution_chain, flavor_text_entries } = speciesResponse.data;
+
+  // Busca o evolution chain
+  const evolutionChainResponse = await axios.get<EvolutionChain>(
+    evolution_chain.url,
+  );
+
+  // Filtra a descrição em português
+  const flavorEntry = flavor_text_entries.find(
+    (entry: { language: { name: string } }) => entry.language.name === 'en',
+  );
+  const description = flavorEntry
+    ? flavorEntry.flavor_text.replace(/\f/g, ' ')
+    : 'Descrição não encontrada.';
+
+  return { evolutionChain: evolutionChainResponse.data, description };
 };
 
 export const parseEvolutionChain = (chain: EvolutionNode): string[] => {
