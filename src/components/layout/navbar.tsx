@@ -60,9 +60,12 @@ export function NavBar({ className }: { className?: string }) {
   return (
     <nav
       className={cn(
-        `grid grid-cols-${MenuList.length} mx-auto w-dvw gap-10 overflow-hidden bg-white px-8 sm:max-w-[calc(100dvw-30%)] lg:max-w-[calc(100dvw-50%)]`,
+        'mx-auto grid w-dvw gap-10 overflow-hidden bg-white px-8 sm:max-w-[calc(100dvw-30%)] lg:max-w-[calc(100dvw-50%)]',
         className,
       )}
+      style={{
+        gridTemplateColumns: `repeat(${MenuList.length}, minmax(0, 1fr))`,
+      }}
     >
       {MenuList.map((menu, index) => {
         const isActive = pathname.startsWith(menu.href);
