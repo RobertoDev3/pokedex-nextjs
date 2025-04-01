@@ -14,6 +14,7 @@ import { IconProfile } from '@/assets/icons/svg/icon-profile';
 import { IconProfileFill } from '@/assets/icons/svg/icon-profile-fill';
 import { IconRegion } from '@/assets/icons/svg/icon-region';
 import { IconRegionFill } from '@/assets/icons/svg/icon-region-fill';
+import { Tooltip } from '../ui/tooltip';
 
 type MenuListProps = {
   name: string;
@@ -70,20 +71,30 @@ export function NavBar({ className }: { className?: string }) {
       {MenuList.map((menu, index) => {
         const isActive = pathname.startsWith(menu.href);
         return (
-          <Link
-            key={index}
-            href={menu.href}
-            onClick={() => setIsNavBarLoading(true)}
-            className={cn(
-              'flex h-[72px] flex-col items-center justify-center transition-all hover:scale-110',
-              isActive && 'pointer-events-none',
-            )}
-          >
-            {isActive ? menu.icon : menu.iconFill}
-            {isActive && (
-              <p className='text-primary text-xs font-medium'>{menu.name}</p>
-            )}
-          </Link>
+          <Tooltip.Provider key={index}>
+            <Tooltip.Root>
+              <Tooltip.Trigger>
+                <Link
+                  href={menu.href}
+                  onClick={() => setIsNavBarLoading(true)}
+                  className={cn(
+                    'flex h-[72px] flex-col items-center justify-center transition-all hover:scale-110',
+                    isActive && 'pointer-events-none',
+                  )}
+                >
+                  {isActive ? menu.icon : menu.iconFill}
+                  {isActive && (
+                    <p className='text-primary text-xs font-medium'>
+                      {menu.name}
+                    </p>
+                  )}
+                </Link>
+              </Tooltip.Trigger>
+              {!isActive && (
+                <Tooltip.Content sideOffset={-25}>{menu.name}</Tooltip.Content>
+              )}
+            </Tooltip.Root>
+          </Tooltip.Provider>
         );
       })}
     </nav>
