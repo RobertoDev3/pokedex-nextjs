@@ -33,7 +33,7 @@ export default function PokedexPageContent() {
 
   if (isLoading)
     return (
-      <section className='h-full overflow-hidden'>
+      <section className='mx-auto h-full max-w-[1720px] overflow-hidden'>
         <div className='flex flex-col sm:flex-row'>
           <Skeleton className='border-border w-full border-b bg-transparent px-4 py-5 sm:max-w-md sm:border-none'>
             <Skeleton className='h-12 rounded-full' />
@@ -44,11 +44,11 @@ export default function PokedexPageContent() {
             <Skeleton className='h-10.5 w-full rounded-full' />
           </div>
         </div>
-        <div className='h-full px-4'>
-          {Array.from({ length: 10 }).map((_, index) => (
+        <div className='grid grid-cols-1 gap-4 px-4 min-[700px]:grid-cols-2 min-[1040px]:grid-cols-3 min-[1370px]:grid-cols-4'>
+          {Array.from({ length: 30 }).map((_, index) => (
             <Skeleton
               key={index}
-              className='mb-4 flex h-[102px] min-w-[328px] justify-between rounded-xl border bg-transparent'
+              className='mx-auto mb-4 flex h-[102px] w-[328px] justify-between rounded-xl border bg-transparent'
             >
               <div className='flex flex-col justify-center gap-1 pr-2 pl-4'>
                 <Skeleton className='h-[16px] w-[35px]' />
