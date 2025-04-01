@@ -6,11 +6,30 @@ import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAllPokemons } from '@/hooks/use-pokemon';
+import { useInView } from 'react-intersection-observer';
 import { pokemonTypeList } from '@/mockups/mockups';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function PokedexPageContent() {
-  const { pokemonList, isLoading, error } = useAllPokemons(151, 0);
+  const {
+    pokemonList,
+    isLoading,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextList,
+  } = useAllPokemons();
+
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextList) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextList, fetchNextPage]);
 
   if (isLoading)
     return (
@@ -55,7 +74,7 @@ export default function PokedexPageContent() {
   }
 
   return (
-    <section>
+    <section className='mx-auto max-w-[1720px]'>
       <article className='flex flex-col sm:flex-row'>
         <div className='border-border w-full border-b px-4 py-5 sm:max-w-md sm:border-none'>
           <Input placeholder='Procurar Pokemon...' search />
@@ -90,15 +109,27 @@ export default function PokedexPageContent() {
         </div>
       </article>
 
-      <article className='grid grid-cols-1 gap-4 px-4 sm:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]'>
+      <article className='space-y-4'>
         {pokemonList &&
-          pokemonList.map(pokemon => (
-            <div key={pokemon.id} className='mx-auto max-w-[350px]'>
-              <Link href={`/pokedex/${pokemon.name}`}>
-                <CardPokemon pokemon={pokemon} />
-              </Link>
+          pokemonList.map((page, index) => (
+            <div
+              key={index}
+              className='grid grid-cols-1 gap-4 px-4 min-[700px]:grid-cols-2 min-[1040px]:grid-cols-3 min-[1370px]:grid-cols-4'
+            >
+              {page.map(pokemon => (
+                <div key={pokemon.id} className='mx-auto max-w-[350px]'>
+                  <Link href={`/pokedex/${pokemon.name}`}>
+                    <CardPokemon pokemon={pokemon} />
+                  </Link>
+                </div>
+              ))}
             </div>
           ))}
+        <div ref={ref} className='mb-4 text-center text-sm font-semibold'>
+          <Skeleton className='bg-transparent'>
+            {hasNextPage && 'Carregando...'}
+          </Skeleton>
+        </div>
       </article>
     </section>
   );

@@ -2,8 +2,8 @@ import { EvolutionChain, EvolutionNode, Pokemon } from '@/types/pokemon-props';
 import axios from 'axios';
 
 export const fetchAllPokemons = async (
-  limit: number = 151,
-  offset: number = 0,
+  limit: number,
+  offset: number,
 ): Promise<Pokemon[]> => {
   const response = await axios.get(
     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,

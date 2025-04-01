@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import {
   fetchAllPokemons,
   fetchPokemonDetails,
@@ -6,18 +6,34 @@ import {
   parseEvolutionChain,
 } from '@/services/pokemonApi';
 
-export const useAllPokemons = (limit: number = 151, offset: number = 0) => {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['allPokemons', limit, offset],
-    queryFn: () => fetchAllPokemons(limit, offset),
+export const useAllPokemons = (limit: number = 12) => {
+  const {
+    data,
+    error,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['allPokemons'],
+    queryFn: ({ pageParam = 0 }: { pageParam: number }) =>
+      fetchAllPokemons(limit, pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      const nextOffset = allPages.length * limit;
+      return nextOffset < 1302 ? nextOffset : undefined;
+    },
+    initialPageParam: 0,
     retry: 2,
     staleTime: 1000 * 60 * 5, // 5 minutos
   });
 
   return {
-    pokemonList: data,
+    pokemonList: data?.pages,
     error,
     isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextList: isFetchingNextPage,
   };
 };
 

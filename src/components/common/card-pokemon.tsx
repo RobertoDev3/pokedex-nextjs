@@ -12,7 +12,7 @@ export function CardPokemon({ pokemon }: { pokemon: Pokemon }): JSX.Element {
           <p className='text-xs font-semibold text-[#333333]'>
             Nº{maskThreeDigits(pokemon.id)}
           </p>
-          <h1 className='text-[21px] font-semibold capitalize'>
+          <h1 className='max-w-[206px] text-[21px] font-semibold text-ellipsis whitespace-nowrap capitalize'>
             {pokemon.name}
           </h1>
         </div>
