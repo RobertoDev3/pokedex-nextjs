@@ -37,6 +37,15 @@ export const useAllPokemons = (limit: number = 12) => {
   };
 };
 
+export const useAllPokemonsFull = (enabled: boolean) => {
+  return useQuery({
+    queryKey: ['allPokemonsFull'],
+    queryFn: () => fetchAllPokemons(1302, 0),
+    enabled,
+    staleTime: 1000 * 60 * 60, // 1h
+  });
+};
+
 export const usePokemon = (pokemonIdentifier: string | number) => {
   const { data, error, isLoading } = useQuery({
     queryKey: ['pokemon', pokemonIdentifier],
